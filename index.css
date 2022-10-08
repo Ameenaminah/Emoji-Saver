@@ -1,0 +1,103 @@
+html {
+  height: 100vh;
+  font-family: Baloo;
+}
+
+body {
+  margin: 20px;
+  text-align: center;
+}
+main {
+  width: 650px;
+  margin: 0 auto;
+  background-image: linear-gradient(#848889, #dfe0e2);
+  padding: 10px;
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+}
+
+#emoji-container {
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+}
+.emoji {
+  margin: 10px;
+  font-size: 60px;
+}
+#push-btn,
+#unshift-btn,
+#shift-btn,
+#pop-btn,
+#delete-btn,
+#happy-btn,
+#sad-btn,
+#others-btn {
+  font-weight: bold;
+  font-size: 20px;
+  color: #323844;
+  width: 200px;
+}
+
+#push-btn,
+#unshift-btn {
+  background-color: #ae8f63;
+}
+
+#shift-btn,
+#pop-btn,
+#delete-btn {
+  background-color: #8b233f;
+}
+#happy-btn,
+#sad-btn,
+#others-btn {
+  background-color: #1f101a;
+}
+
+h1 {
+  letter-spacing: 2px;
+  text-align: center;
+  color: #323844;
+  text-shadow: 0px 0px 5px black;
+}
+
+input {
+  margin: 0 auto;
+  display: block;
+  border: none;
+  height: 30px;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+}
+
+button {
+  font-family: Baloo;
+  letter-spacing: px;
+  background: darkcyan;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin: 10px 4px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 10px 40px;
+  padding: 10px;
+}
+#section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-container {
+  border: 5px dotted black;
+  width: 100px;
+  margin-top: 20px;
+  margin: 40px;
+}
