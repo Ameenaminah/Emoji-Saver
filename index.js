@@ -3,7 +3,8 @@ let myEmojis = [];
 let happyEmogis = [];
 let sadEmojis = [];
 let othersEmojis = [];
-// containers
+
+// Containers
 let emojiContainer = document.querySelector("#emojiContainer");
 const sadEmojiContainer = document.querySelector("#sad-emojiContainer");
 const happyEmojiContainer = document.querySelector("#happy-emojiContainer");
@@ -24,26 +25,48 @@ const deleteBtn = document.getElementById("delete-btn");
 //Input
 const emojiInput = document.querySelector("#emoji-input");
 
+// LocalStorage
+const myEmojisFromLocalStorage = JSON.parse(localStorage.getItem("myEmojis"));
+const happyEmojisFromLocalStorage = JSON.parse(
+  localStorage.getItem("happyEmogis")
+);
+const sadEmojisFromLocalStorage = JSON.parse(localStorage.getItem("sadEmogis"));
+const othersEmojisFromLocalStorage = JSON.parse(
+  localStorage.getItem("othersEmogis")
+);
+
 //listeners
 addBtnWrapper.addEventListener("click", addEmojiBtn);
 removeBtnWrapper.addEventListener("click", removeEmojiBtn);
 saveBtnWrapper.addEventListener("dblclick", saveBtn);
-deleteBtn.addEventListener("click", function () {
-  myEmojis = [];
-  happyEmogis = [];
-  sadEmojis = [];
-  othersEmojis = [];
+deleteBtn.addEventListener("click", deleteAllbtn);
+
+if (myEmojisFromLocalStorage) {
+  myEmojis = myEmojisFromLocalStorage;
   render(myEmojis, emojiContainer);
+}
+if (happyEmojisFromLocalStorage) {
+  happyEmogis = happyEmojisFromLocalStorage;
   render(happyEmogis, happyEmojiContainer);
+}
+if (sadEmojisFromLocalStorage) {
+  sadEmojis = sadEmojisFromLocalStorage;
   render(sadEmojis, sadEmojiContainer);
+}
+if (othersEmojisFromLocalStorage) {
+  othersEmojis = othersEmojisFromLocalStorage;
   render(othersEmojis, othersEmojiContainer);
-});
+}
 
 //  EventListener Functions
 
 function addEmojiBtn(e) {
-  if (document.getElementById(e.target.id) === pushBtn) {
-    modifySaveBtn(myEmojis, emojiContainer);
+  if (
+    emojiInput.value &&
+    !myEmojis.includes(emojiInput.value) &&
+    document.getElementById(e.target.id) === pushBtn
+  ) {
+    myEmojis.unshift(emojiInput.value);
   } else if (
     emojiInput.value &&
     !myEmojis.includes(emojiInput.value) &&
@@ -53,6 +76,7 @@ function addEmojiBtn(e) {
   }
   emojiInput.value = "";
   render(myEmojis, emojiContainer);
+  localStorage.setItem("myEmojis", JSON.stringify(myEmojis));
 }
 
 function removeEmojiBtn(e) {
@@ -67,21 +91,35 @@ function removeEmojiBtn(e) {
 function saveBtn(e) {
   if (document.getElementById(e.target.id) === happyBtn) {
     modifySaveBtn(happyEmogis, happyEmojiContainer);
+    localStorage.setItem("happyEmogis", JSON.stringify(happyEmogis));
   } else if (document.getElementById(e.target.id) === sadBtn) {
     modifySaveBtn(sadEmojis, sadEmojiContainer);
+    localStorage.setItem("sadEmojis", JSON.stringify(sadEmojis));
   } else if (document.getElementById(e.target.id) === othersBtn) {
     modifySaveBtn(othersEmojis, othersEmojiContainer);
+    localStorage.setItem("othersEmojis", JSON.stringify(othersEmojis));
   }
+}
+
+function deleteAllbtn(e) {
+  myEmojis = [];
+  happyEmogis = [];
+  sadEmojis = [];
+  othersEmojis = [];
+  localStorage.clear();
+  render(myEmojis, emojiContainer);
+  render(happyEmogis, happyEmojiContainer);
+  render(sadEmojis, sadEmojiContainer);
+  render(othersEmojis, othersEmojiContainer);
 }
 
 // Modify Functions
 function modifySaveBtn(arr, saveContainer) {
-  if (emojiInput.value && !arr.includes(emojiInput.value)) {
-    arr.push(emojiInput.value);
+  if (emojiContainer.innerHTML && !arr.includes(emojiContainer.innerHTML)) {
+    arr.push(emojiContainer.innerHTML);
+    emojiContainer.innerHTML = "";
+    render(arr, saveContainer);
   }
-  emojiInput.value = "";
-  localStorage.setItem("arr", JSON.stringify(arr));
-  render(arr, saveContainer);
 }
 
 // Render Function
