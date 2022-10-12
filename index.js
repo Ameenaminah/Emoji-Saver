@@ -14,13 +14,7 @@ const addBtnWrapper = document.getElementById("add-btn-wrapper");
 const removeBtnWrapper = document.getElementById("remove-btn-wrapper");
 const saveBtnWrapper = document.getElementById("save-btn-wrapper");
 //buttons
-const pushBtn = document.querySelector("#push-btn");
-const unshifBtn = document.querySelector("#unshift-btn");
-const popBtn = document.getElementById("pop-btn");
-const shiftBtn = document.getElementById("shift-btn");
-const happyBtn = document.getElementById("happy-btn");
-const sadBtn = document.getElementById("sad-btn");
-const othersBtn = document.getElementById("others-btn");
+
 const deleteBtn = document.getElementById("delete-btn");
 //Input
 const emojiInput = document.querySelector("#emoji-input");
@@ -64,13 +58,13 @@ function addEmojiBtn(e) {
   if (
     emojiInput.value &&
     !myEmojis.includes(emojiInput.value) &&
-    document.getElementById(e.target.id) === pushBtn
+    e.target.id === "push-btn"
   ) {
-    myEmojis.unshift(emojiInput.value);
+    myEmojis.push(emojiInput.value);
   } else if (
     emojiInput.value &&
     !myEmojis.includes(emojiInput.value) &&
-    document.getElementById(e.target.id) === unshifBtn
+    e.target.id === "unshift-btn"
   ) {
     myEmojis.unshift(emojiInput.value);
   }
@@ -80,7 +74,7 @@ function addEmojiBtn(e) {
 }
 
 function removeEmojiBtn(e) {
-  if (document.getElementById(e.target.id) === popBtn) {
+  if (e.target.id === "pop-btn") {
     myEmojis.pop();
   } else {
     myEmojis.shift();
@@ -89,13 +83,13 @@ function removeEmojiBtn(e) {
 }
 
 function saveBtn(e) {
-  if (document.getElementById(e.target.id) === happyBtn) {
+  if (e.target.id === "happy-btn") {
     modifySaveBtn(happyEmogis, happyEmojiContainer);
     localStorage.setItem("happyEmogis", JSON.stringify(happyEmogis));
-  } else if (document.getElementById(e.target.id) === sadBtn) {
+  } else if (e.target.id === "sad-btn") {
     modifySaveBtn(sadEmojis, sadEmojiContainer);
     localStorage.setItem("sadEmojis", JSON.stringify(sadEmojis));
-  } else if (document.getElementById(e.target.id) === othersBtn) {
+  } else if (e.target.id === "others-btn") {
     modifySaveBtn(othersEmojis, othersEmojiContainer);
     localStorage.setItem("othersEmojis", JSON.stringify(othersEmojis));
   }
