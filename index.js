@@ -9,13 +9,15 @@ let emojiContainer = document.querySelector("#emojiContainer");
 const sadEmojiContainer = document.querySelector("#sad-emojiContainer");
 const happyEmojiContainer = document.querySelector("#happy-emojiContainer");
 const othersEmojiContainer = document.querySelector("#others-emojiContainer");
+
 // Btn Wrappers
 const addBtnWrapper = document.getElementById("add-btn-wrapper");
 const removeBtnWrapper = document.getElementById("remove-btn-wrapper");
 const saveBtnWrapper = document.getElementById("save-btn-wrapper");
-//buttons
 
+//buttons
 const deleteBtn = document.getElementById("delete-btn");
+
 //Input
 const emojiInput = document.querySelector("#emoji-input");
 
